@@ -1,0 +1,31 @@
+{
+  "template_id": "starter-core-sdb3",
+  "features": {
+    "gen_ai_call_summary": false,
+    "gen_ai_eci": false,
+    "lead_scoring": true,
+    "smart_routing_assist": false
+  },
+  "permissions": {
+    "sales_rep_create_contact": true,
+    "sales_rep_delete_contact": false,
+    "admin_manage_templates": true,
+    "api_enabled": false
+  },
+  "routing": {
+    "inbound_call_queue": "queue_default",
+    "priority_threshold": 80,
+    "assignment_rule": "standard_inbound"
+  },
+  "labels": {
+    "homepage_title": "Starter Workspace",
+    "case_console_title": "Customer Care Desk"
+  },
+  "sharing": {
+    "contact_visibility": "private",
+    "account_visibility": "private"
+  },
+  "descriptions": {
+    "release_note": "Q2 baseline release signed off"
+  }
+}

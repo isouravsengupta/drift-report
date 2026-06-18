@@ -1,0 +1,31 @@
+{
+  "template_id": "starter-core-sdb3",
+  "features": {
+    "gen_ai_call_summary": true,
+    "gen_ai_eci": true,
+    "lead_scoring": true,
+    "smart_routing_assist": true
+  },
+  "permissions": {
+    "sales_rep_create_contact": true,
+    "sales_rep_delete_contact": true,
+    "admin_manage_templates": true,
+    "api_enabled": true
+  },
+  "routing": {
+    "inbound_call_queue": "queue_priority",
+    "priority_threshold": 70,
+    "escalation_queue": "queue_escalation"
+  },
+  "labels": {
+    "homepage_title": "Starter Workspace v2",
+    "case_console_title": "Customer Care Desk - AI Pilot"
+  },
+  "sharing": {
+    "contact_visibility": "public_read",
+    "account_visibility": "public_read"
+  },
+  "features_flags": {
+    "pilot_release": "batch-2026-06"
+  }
+}
