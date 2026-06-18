@@ -1,52 +1,66 @@
 # Demo Readiness Checklist
 
-## Ready State
+This file helps you run a clean 3-5 minute demo without surprises.
 
-This project is ready for a functional demo now.
+## Current status
 
-What is complete:
-- Baseline vs candidate drift detection
-- Risk scoring (high/medium/low)
-- Rollback guidance generation
-- Markdown and JSON report outputs
-- One-command live-org run path (`run_live_demo.sh`)
+Ready to demo now.
 
-## Demo Modes
+Implemented:
+- Snapshot comparison (baseline vs candidate)
+- Drift detection (`added`, `removed`, `modified`)
+- Risk scoring (`high`, `medium`, `low`)
+- Release gate signal (`safe_to_promote`)
+- Rollback suggestions
+- JSON + markdown report generation
+- One-command live flow (`run_live_demo.sh`)
 
-### Mode A: Snapshot Demo (most reliable)
+## Demo mode options
 
-Use prepared snapshot files in `snapshots/` and run:
+### Mode A: Stable demo (recommended)
+
+Use local snapshots:
 
 ```bash
 python3 drift_guard.py --baseline snapshots/baseline.json --current snapshots/current.json --output output
 ```
 
-### Mode B: Live Org Demo (best story, environment dependent)
+Why use this:
+- no auth dependency,
+- predictable output,
+- best for recorded video.
 
-Authenticate org aliases with Salesforce CLI, then run:
+### Mode B: Live org demo
+
+Run:
 
 ```bash
 ./run_live_demo.sh <baseline_alias> <candidate_alias> DriftDemo_Perms Contact "Support Queue" DRIFT_DEMO_LABEL
 ```
 
-## What to Show in Video (3-5 mins)
+Why use this:
+- stronger "real workflow" credibility.
 
-1. Open baseline and current snapshot inputs
-2. Run the command
-3. Open `output/drift-report.md`
-4. Explain:
-   - high-risk drifts block promotion
-   - medium/low drifts are visible and trackable
-   - rollback plan is auto-generated
+Risk:
+- depends on org authentication and environment stability.
 
-## Suggested Talking Points
+## Script for your narration
 
-- "This is a release safety gate for Salesforce template configurations."
-- "It catches accidental permission/sharing/routing drift before GA."
-- "Collector is pluggable: static JSON today, org/API extraction in production."
+1. "Here is the known-good baseline snapshot."
+2. "Here is the candidate snapshot for release."
+3. "Now I run Drift Report."
+4. "The report shows high-risk drifts in permissions/sharing/routing."
+5. "Since high-risk drift exists, promotion is blocked."
+6. "Rollback actions are auto-generated at the end."
 
-## Known Constraints to Mention Transparently
+## Pre-demo sanity check (30 seconds)
 
-- Extraction coverage is intentionally narrow for MVP speed.
-- Real-time is implemented as on-demand command execution, not a daemon.
-- Notification integrations are planned but not yet implemented.
+- Confirm command runs successfully.
+- Confirm `output/drift-report.md` exists.
+- Open the markdown file once before recording.
+
+## Transparent caveats (say these if asked)
+
+- Current collector is intentionally focused on a small subset for speed.
+- This is on-demand runtime, not continuous monitoring.
+- Alerts/integrations (Slack/Jira) are planned next.

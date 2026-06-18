@@ -1,29 +1,53 @@
 {
   "template_id": "starter-core-sdb3",
   "features": {
-    "gen_ai_call_summary": false,
-    "gen_ai_eci": false,
-    "lead_scoring": true,
-    "smart_routing_assist": false
+    "einstein_call_summaries_enabled": false,
+    "einstein_conversation_insights_enabled": false,
+    "einstein_lead_scoring_enabled": true,
+    "einstein_next_best_action_enabled": false
   },
   "permissions": {
-    "sales_rep_create_contact": true,
-    "sales_rep_delete_contact": false,
-    "admin_manage_templates": true,
-    "api_enabled": false
+    "permission_sets": {
+      "DriftDemo_Perms": {
+        "api_enabled": false,
+        "objects": {
+          "Contact": {
+            "PermissionsRead": true,
+            "PermissionsCreate": true,
+            "PermissionsEdit": true,
+            "PermissionsDelete": false,
+            "PermissionsViewAllRecords": false,
+            "PermissionsModifyAllRecords": false
+          }
+        }
+      }
+    }
   },
   "routing": {
-    "inbound_call_queue": "queue_default",
-    "priority_threshold": 80,
-    "assignment_rule": "standard_inbound"
+    "queues": {
+      "Support Queue": {
+        "developer_name": "Support_Queue",
+        "routing_priority": 80
+      }
+    },
+    "case_assignment_rules": {
+      "active_rule": "Standard_Inbound",
+      "escalation_queue": null
+    }
   },
   "labels": {
-    "homepage_title": "Starter Workspace",
-    "case_console_title": "Customer Care Desk"
+    "DRIFT_DEMO_LABEL": "Starter Workspace",
+    "CASE_CONSOLE_TITLE": "Customer Care Desk"
   },
   "sharing": {
-    "contact_visibility": "private",
-    "account_visibility": "private"
+    "org_wide_defaults": {
+      "Account": {
+        "InternalSharingModel": "Private"
+      },
+      "Contact": {
+        "InternalSharingModel": "Private"
+      }
+    }
   },
   "descriptions": {
     "release_note": "Q2 baseline release signed off"
